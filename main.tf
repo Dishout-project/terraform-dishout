@@ -25,6 +25,14 @@ resource "google_compute_address" "static_ip" {
 }
 
 
+terraform {
+  backend "gcs" {
+    bucket      = "dishout-terraform-state"
+    prefix      = "dishout/state"
+    credentials = "credential/dishout-285810-a65687753e29.json"
+  }
+}
+
 # terraform {
 #   backend "gcs" {
 #     bucket  = "tf-state-prod"
