@@ -17,3 +17,8 @@ variable "image" {
   type    = string
   default = "ubuntu-1804-bionic-v20200807"
 }
+
+variable "script_path"{
+  type = string
+  default = "files/startup.sh"
+}

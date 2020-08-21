@@ -1,7 +1,7 @@
 resource "google_compute_instance" "vm_instance" {
   name         = var.name
   machine_type = var.machine_type
-  # metadata_startup_script = file("startup.sh")
+  metadata_startup_script = file(var.script_path)
 
   tags = ["dishout"]
 

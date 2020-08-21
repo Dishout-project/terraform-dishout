@@ -10,4 +10,5 @@ module "compute" {
   name = var.compute_name
   machine_type = var.machine_type
   image = var.image
+  script_path= var.script_path
 }
