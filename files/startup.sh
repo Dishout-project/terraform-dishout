@@ -18,8 +18,8 @@ sudo usermod -aG docker dishout
 
 
 # Cloning frontend
-su - dishout -c "git clone https://github.com/Dishout-project/dishout-frontend.git --single-branch --branch development"
-su - dishout -c "cd dishout-frontend && docker build . -t frontend && docker run -p 80:80 --name frontend"
+# su - dishout -c "git clone https://github.com/Dishout-project/dishout-frontend.git --single-branch --branch development"
+su - dishout -c "docker run -p 80:80 --name dishout-frontend fortunexfortune/dishout-frontend"
 
 # pwd 2>&1 | tee -a SomeFile.txt
 
