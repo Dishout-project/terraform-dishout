@@ -20,7 +20,7 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 resource "google_compute_address" "static_ip" {
-  name = "terraform-static-ip"
+  name = var.static_ip_name
 }
 
 resource "google_compute_firewall" "default" {
@@ -35,6 +35,7 @@ resource "google_compute_firewall" "default" {
     protocol = "tcp"
     ports    = ["80", "443", "3000", "22"]
   }
+
 
   source_tags = ["dishout"]
   source_ranges = ["0.0.0.0/0"]
