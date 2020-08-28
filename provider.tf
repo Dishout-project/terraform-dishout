@@ -1,11 +1,19 @@
 terraform {
   required_version = ">= 0.12"
 
-    backend "gcs" {
+  backend "gcs" {
     bucket      = "dishout-terraform-state"
     prefix      = "dishout/state"
     credentials = "credential/dishout-285810-a65687753e29.json"
   }
+
+  required_providers {
+    mongodbatlas =  {
+      source = "terraform-providers/mongodbatlas"
+    }
+
+  }
+
 }
 
 provider "google" {
@@ -16,4 +24,11 @@ provider "google" {
   project = "dishout-285810"
   region  = "us-central1"
   zone    = "us-central1-c"
+}
+
+
+# Define the MongoDB Atlas Provider
+provider "mongodbatlas" {
+  public_key  = var.atlas_public_key
+  private_key = var.atlas_private_key
 }
