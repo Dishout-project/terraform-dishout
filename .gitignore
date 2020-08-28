@@ -32,4 +32,4 @@ override.tf.json
 credential
 
 # .tfvars files
-*.tfvars
+terraform.tfvars
