@@ -8,7 +8,7 @@ terraform {
   }
 
   required_providers {
-    mongodbatlas =  {
+    mongodbatlas = {
       source = "terraform-providers/mongodbatlas"
     }
 

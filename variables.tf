@@ -59,40 +59,40 @@ variable "atlas_private_key" {
   description = "Your MongoDD_Atlas private API access token"
 }
 
-variable "atlas_org_id"{
+variable "atlas_org_id" {
   type        = string
   description = "Atlas organization id"
 
 }
 
-variable "atlas_project_name"{
+variable "atlas_project_name" {
   type        = string
   description = "Atlas project name"
-  default = "dishout"
+  default     = "dishout"
 
 }
 
-variable "mongodb_username"{
+variable "mongodb_username" {
   type        = string
   description = "Mongodb db username"
-  default = "terraform"
+  default     = "terraform"
 }
 
-variable "mongodb_password"{
+variable "mongodb_password" {
   type        = string
   description = "Atlas project db password"
 }
 
-variable "mongodb_rolename"{
+variable "mongodb_rolename" {
   type        = string
   description = "Role Name"
-  default = "dbAdmin"
+  default     = "dbAdmin"
 
 }
-variable "environment"{
+variable "environment" {
   type        = string
   description = "??"
-  default = "environment"
+  default     = "environment"
 
 }
 
