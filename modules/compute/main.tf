@@ -6,7 +6,7 @@ resource "google_compute_instance" "vm_instance" {
   tags = [var.compute_tag]
 
   metadata = {
-    ssh-keys= format("dishout:%s", file("credential/dishout-ssh-keys.pub"))
+    ssh-keys= format("%s:%s", var.ssh_user, file(var.ssh_pub_key))
   }
 
 

@@ -25,9 +25,14 @@ variable "image" {
   default = "ubuntu-1804-bionic-v20200807"
 }
 
+variable "ssh_user" {
+  type    = string
+  default = "dishout"
+}
+
 variable "ssh_pub_key" {
   type    = string
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDTbKpbzjoQz5wLYgfUTeFT4RTNG34UP0CR+2b0wy2JSOI4PGl9nXLatTbz8DScqqBA8zM4NBNkTsl49JJsxcHGsTomKzXNw/2ulzjy5LYNcJhxOsw+UCzdgfG9T4LoA55YNLusWvRA29QTUbgMcQWDmfLDu1D+0EanuuFMvRqdJhZWSinBG2nYDGHQyoUaseIkA+ftovr+rcTztovz1CKXjoz4rhbeGMVa/AYDXFtvvLFh/oJtBnqLEDSYJehcTcyw+bD4JDS7EiMZYu7y1iZwBykQaJOtVv05cplzpljdzcxS9+SmkfQK1SOuBIjRntN6DLLg1SR1e5DQTPa9yhdhCeb+oTPOJbEMVf2Bh/Uz8OrfA2XSWnJIl4BENhFs1s6NsCo9JryGyyi0ZJC4csrKFPZOkzbQBjSlzqTg/dxvMCPabMKF8SNCvGmN3OY3Aeh/EjOzTCtASkgb13UCP3aZVC4jN5TAQ0stXUbXWgGgTDyDx/5hpNbWH0La5CyGExnjelI+CSQ9+OBbHnnMojwwE61zUB2vohraGsY9HLUISTTnhMlism9aXxzJXqx2N3UJOjT2vKEisXpepM9mMX1C0IGkVEXM4Lx0Ch54gRch5F0EU34efvnsijcVI4ID9oqIwrlf6kYxjri51Gof/bBYVPYLqZkQNDM0NAAfn1CIpw== cloud_user@fortune1c.mylabserver.com"
+  default = "credential/dishout-ssh-keys.pub"
 }
 
 
