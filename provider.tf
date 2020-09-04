@@ -7,13 +7,6 @@ terraform {
     credentials = "credential/dishout-285810-a65687753e29.json"
   }
 
-  required_providers {
-    mongodbatlas =  {
-      source = "terraform-providers/mongodbatlas"
-    }
-
-  }
-
 }
 
 provider "google" {
@@ -27,8 +20,3 @@ provider "google" {
 }
 
 
-# Define the MongoDB Atlas Provider
-provider "mongodbatlas" {
-  public_key  = var.atlas_public_key
-  private_key = var.atlas_private_key
-}
