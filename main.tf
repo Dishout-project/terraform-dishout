@@ -7,10 +7,11 @@ module "network" {
 module "compute" {
   source         = "./modules/compute"
   network_name   = module.network.name
+  compute_tag  = var.compute_tag
   static_ip_name = var.static_ip_name
   name           = var.compute_name
   machine_type   = var.machine_type
   image          = var.image
   script_path    = var.script_path
-  # static_ip_name = var.static_ip_name
+  firewall_name = var.firewall_name
 }

@@ -3,7 +3,7 @@ resource "google_compute_instance" "vm_instance" {
   machine_type = var.machine_type
   metadata_startup_script = file(var.script_path)
 
-  tags = ["dishout"]
+  tags = [var.compute_tag]
 
 
   boot_disk {
@@ -24,7 +24,7 @@ resource "google_compute_address" "static_ip" {
 }
 
 resource "google_compute_firewall" "default" {
-  name    = "test-firewall"
+  name    = var.firewall_name
   network = var.network_name
 
   allow {

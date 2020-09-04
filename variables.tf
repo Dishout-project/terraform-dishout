@@ -1,11 +1,18 @@
+# Network vars
 variable "network_name" {
   type    = string
   default = "terraform-network"
 }
 
+# Compute vars
 variable "compute_name" {
   type    = string
   default = "terraform-instance"
+}
+
+variable "compute_tag" {
+  type    = string
+  default = "dishout"
 }
 
 variable "machine_type" {
@@ -23,32 +30,19 @@ variable "script_path" {
   default = "files/startup.sh"
 }
 
-
 variable "static_ip_name" {
   type    = string
   default = "terraform-static-ip"
 }
 
+variable "firewall_name" {
+  type    = string
+  default = "test-firewall"
+}
 
-# variable "docker_ports" {
-#   type = list(object({
-#     protocol = string
-#     ports = list(string)
-#   }))
-#   default = [
-#     {
-#       protocol = "tcp"
-#       ports = ["80", "443", "3000", "22"]
-#     },
-#     {
-#       protocol = "icmp"
-#       ports = [""]
-#     }
-#   ]
-# }
 
-# MongoDB Atlas
 
+# MongoDB Atlas 
 variable "atlas_public_key" {
   type        = string
   description = "Your MongoDD_Atlas plublic API access token"
@@ -96,14 +90,14 @@ variable "environment" {
 
 }
 
-# Cluster instance size name 
 variable "cluster_instance_size_name" {
+  # Cluster instance size name 
   type        = string
   description = "Cluster instance size name"
   default     = "M10"
 }
-# Atlas region
 variable "atlas_region" {
+  # Atlas region
   type        = string
   description = "GCP region where resources will be created"
   default     = "WESTERN_EUROPE"
