@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install dependencies
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 2>&1 | tee -a SomeFile.txt
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 2>&1 
 sudo apt-get install -y nodejs
 sudo apt install git -y 
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y

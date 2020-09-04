@@ -9,6 +9,7 @@ module "compute" {
   network_name   = module.network.name
   compute_tag  = var.compute_tag
   static_ip_name = var.static_ip_name
+  ssh_pub_key = var.ssh_pub_key
   name           = var.compute_name
   machine_type   = var.machine_type
   image          = var.image
