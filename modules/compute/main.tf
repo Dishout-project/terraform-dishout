@@ -24,7 +24,7 @@ resource "google_compute_address" "static_ip" {
 }
 
 resource "google_compute_firewall" "default" {
-  name    = "test-firewall"
+  name    = var.firewall_name
   network = var.network_name
 
   allow {
@@ -33,7 +33,7 @@ resource "google_compute_firewall" "default" {
 
   allow {
     protocol = "tcp"
-    ports    = ["80", "443", "3000", "22"]
+    ports    = var.firewall_tcp_ports
   }
 
 

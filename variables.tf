@@ -29,8 +29,18 @@ variable "static_ip_name" {
   default = "terraform-static-ip"
 }
 
+variable "compute_firewall_name" {
+  type    = string
+  default = "compute-firewall"
+}
 
-# variable "docker_ports" {
+variable "compute_tcp_ports" {
+  type    = list(string)
+  default = ["80", "443", "3000", "22"]
+}
+
+# TODO: Look into getting below code to work in module
+# variable "compute_ports" {
 #   type = list(object({
 #     protocol = string
 #     ports = list(string)
@@ -39,10 +49,6 @@ variable "static_ip_name" {
 #     {
 #       protocol = "tcp"
 #       ports = ["80", "443", "3000", "22"]
-#     },
-#     {
-#       protocol = "icmp"
-#       ports = [""]
 #     }
 #   ]
 # }
@@ -63,3 +69,26 @@ variable "mongo_script_path" {
   type    = string
   default = "files/mongo.sh"
 }
+
+variable "mongo_firewall_name" {
+  type    = string
+  default = "mongo-firewall"
+}
+
+variable "mongo_tcp_ports" {
+  type    = list(string)
+  default = ["27017", "22"]
+}
+
+# variable "mongo_ports" {
+#   type = list(object({
+#     protocol = string
+#     ports = list(string)
+#   }))
+#   default = [
+#     {
+#       protocol = "tcp"
+#       ports = ["27017", "22"]
+#     }
+#   ]
+# }
