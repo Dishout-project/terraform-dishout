@@ -19,3 +19,5 @@ variable "static_ip_name"{}
 
 # firewall vars
 variable "firewall_name"{}
+
+variable "firewall_rules"{}

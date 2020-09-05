@@ -2,7 +2,7 @@
 
 - hosts: all
   vars:
-    duckdns_token: "token" 
+    duckdns_token: "83cf9d58-ef4e-11ea-adc1-0242ac120002" 
   tasks:
 
   - name: Creating DuckDns script

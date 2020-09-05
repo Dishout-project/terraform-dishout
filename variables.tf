@@ -71,6 +71,15 @@ variable "firewall_name" {
   default = "test-firewall"
 }
 
+variable "firewall_rules" {
+  type = map(any)
+
+  default = {
+    "tcp" = "80,443,22,3000,"
+    "icmp" = ""
+  }
+}
+
 
 
 # MongoDB Atlas 

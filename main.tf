@@ -20,5 +20,6 @@ module "compute" {
   ansible_playbook = var.ansible_playbook
   ansible_inventory = var.ansible_inventory
   firewall_name = var.firewall_name
+  firewall_rules = var.firewall_rules
 }
 

@@ -48,16 +48,18 @@ resource "google_compute_address" "static_ip" {
 }
 
 resource "google_compute_firewall" "default" {
+ for_each = var.firewall_rules
+
   name    = var.firewall_name
   network = var.network_name
 
-  allow {
-    protocol = "icmp"
-  }
+  # allow {
+  #   protocol = each.key
+  # }
 
   allow {
-    protocol = "tcp"
-    ports    = ["80", "443", "3000", "22"]
+    protocol = each.key
+    ports    = split(",", each.value)
   }
 
 
