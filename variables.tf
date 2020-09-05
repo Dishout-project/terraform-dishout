@@ -35,10 +35,30 @@ variable "ssh_pub_key" {
   default = "credential/dishout-ssh-keys.pub"
 }
 
+variable "ssh_private_key" {
+  type    = string
+  default = "credential/dishout-ssh-keys"
+}
+
+variable "duckdns_token" {
+  type    = string
+  description = "DuckDns token"
+}
+
 
 variable "script_path" {
   type    = string
   default = "files/startup.sh"
+}
+
+variable "ansible_playbook" {
+  type    = string
+  default = "provisioner/playbook.yml"
+}
+
+variable "ansible_inventory" {
+  type    = string
+  default = "provisioner/inventory.compute.gcp.yml"
 }
 
 variable "static_ip_name" {
