@@ -4,6 +4,7 @@ variable "machine_type" {}
 variable "image" {}
 variable "network_name"{}
 variable "script_path"{}
+
 variable "compute_tag"{}
 variable "ssh_user"{}
 variable "ssh_pub_key"{}

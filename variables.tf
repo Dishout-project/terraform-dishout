@@ -66,6 +66,12 @@ variable "static_ip_name" {
   default = "terraform-static-ip"
 }
 
+variable "compute_firewall_name" {
+  type    = string
+  default = "compute-firewall"
+}
+
+# Mongo
 variable "firewall_name" {
   type    = string
   default = "test-firewall"
@@ -79,8 +85,6 @@ variable "firewall_rules" {
     "icmp" = ""
   }
 }
-
-
 
 # MongoDB Atlas 
 variable "atlas_public_key" {
@@ -104,9 +108,27 @@ variable "atlas_project_name" {
   description = "Atlas project name"
   default     = "dishout"
 
+variable "mongo_compute_name" {
+  type    = string
+  default = "mongodb"
 }
 
-variable "mongodb_username" {
+variable "mongo_static_ip_name" {
+  type    = string
+  default = "mongo-terraform-static-ip"
+}
+
+variable "mongo_script_path" {
+  type    = string
+  default = "files/mongo.sh"
+}
+
+variable "mongo_firewall_name" {
+  type    = string
+  default = "mongo-firewall"
+}
+
+ variable "mongodb_username" {
   type        = string
   description = "Mongodb db username"
   default     = "terraform"
@@ -128,7 +150,11 @@ variable "environment" {
   description = "??"
   default     = "environment"
 
+variable "mongo_tcp_ports" {
+  type    = list(string)
+  default = ["27017", "22"]
 }
+
 
 variable "cluster_instance_size_name" {
   # Cluster instance size name 
