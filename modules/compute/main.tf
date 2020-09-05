@@ -37,9 +37,6 @@ resource "google_compute_instance" "vm_instance" {
 
   provisioner "local-exec" {
     command = format("ansible-playbook %s -i %s --private-key %s --extra-vars 'ansible_user=%s duckdns_token=%s'", var.ansible_playbook, var.ansible_inventory, var.ssh_private_key, var.ssh_user, var.duckdns_token)
-  
-  #    command = format("ansible-playbook provisioner/playbook.yml -i provisioner/inventory.compute.gcp.yml --extra-vars 'ansible_user=dishout duckdns_token=%s' --private-key credential/dishout-ssh-keys", var.duckdns_token)
-
   environment = {
       "ANSIBLE_HOST_KEY_CHECKING" = "False"
     }
