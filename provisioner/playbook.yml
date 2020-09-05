@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  vars:
+    duckdns_token: "83cf9d58-ef4e-11ea-adc1-0242ac120002" 
+  tasks:
+
+  - name: Creating DuckDns script
+    lineinfile:
+      path: ~/duckdns/duck.sh
+      line: echo url="https://www.duckdns.org/update?domains=dishout-frontend&token={{duckdns_token}}&ip=" | curl -k -o ~/duckdns/duck.log -K -   
+      mode: '700'
+      create: yes
+
+  - name: populate crontab with DuckDns script
+    shell: | 
+      crontab  << EOF
+      */5 * * * * ~/duckdns/duck.sh >/dev/null 2>&1
+      EOF
+
+  - name: Run DuckDns script
+    command: sh  ~/duckdns/duck.sh

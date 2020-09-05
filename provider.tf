@@ -7,6 +7,13 @@ terraform {
     credentials = "credential/dishout-285810-a65687753e29.json"
   }
 
+
+  required_providers {
+    mongodbatlas = {
+      source = "terraform-providers/mongodbatlas"
+    }
+  }
+  
 }
 
 provider "google" {
