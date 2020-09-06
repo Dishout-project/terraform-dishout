@@ -20,11 +20,13 @@ variable "web_compute" {
         source_ranges = list(string)
       }))
     })
+
+    install_duckdns = bool
   })
 
   default = {
     name           = "web"
-    tag            = ["web","ansible"]
+    tag            = ["web", "ansible"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/startup.sh"
@@ -34,7 +36,7 @@ variable "web_compute" {
       name = "web-firewall"
       rules = {
         "tcp" = {
-          ports         = ["80","443","22"]
+          ports         = ["80", "443", "22"]
           source_ranges = ["0.0.0.0/0"]
         }
         "icmp" = {
@@ -43,6 +45,7 @@ variable "web_compute" {
         }
       }
     }
+    install_duckdns = true
   }
 }
 
@@ -62,6 +65,9 @@ variable "mognodb_compute" {
         source_ranges = list(string)
       }))
     })
+
+    install_duckdns = bool
+
   })
 
   default = {
@@ -76,7 +82,7 @@ variable "mognodb_compute" {
       name = "mongo-firewall"
       rules = {
         "tcp" = {
-          ports         = ["27017","22"]
+          ports         = ["27017", "22"]
           source_ranges = ["0.0.0.0/0"]
         }
         "icmp" = {
@@ -85,12 +91,17 @@ variable "mognodb_compute" {
         }
       }
     }
+    install_duckdns = false
   }
 }
 
 variable "ssh" {
-  type = any
+  type = object({
+    user        = string
+    public_key  = string
+    private_key = string
 
+  })
   default = {
     "user"        = "dishout"
     "public_key"  = "credential/dishout-ssh-keys.pub"
@@ -98,19 +109,13 @@ variable "ssh" {
   }
 }
 
-variable "ansible_provisioner" {
-  type = object({
-    playbook  = string
-    inventory = string
-  })
-
-  default = {
-    playbook  = "provisioner/playbook.yml"
-    inventory = "provisioner/inventory.compute.gcp.yml"
-  }
+variable "ansible_playbook" {
+  type    = string
+  default = "playbook.yml"
 }
+
 
 variable "duckdns_token" {
   type        = string
-  description = "DuckDns token"
+  description = "DuckDns token, currently using Fortune's account tokken"
 }

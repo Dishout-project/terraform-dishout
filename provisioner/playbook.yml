@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: "{{ variable_host | default('web_servers') }}" 
   vars:
     duckdns_token: "83cf9d58-ef4e-11ea-adc1-0242ac120002" 
   tasks:

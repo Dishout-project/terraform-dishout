@@ -13,7 +13,7 @@ terraform {
       source = "terraform-providers/mongodbatlas"
     }
   }
-  
+
 }
 
 provider "google" {
