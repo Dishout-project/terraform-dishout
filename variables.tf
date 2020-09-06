@@ -26,7 +26,7 @@ variable "web_compute" {
 
   default = {
     name           = "web"
-    tag            = ["web", "ansible"]
+    tag            = ["web"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/startup.sh"
