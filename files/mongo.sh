@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Create dishout user
+useradd -m -d /home/dishout dishout && usermod --shell /bin/bash dishout
+
 sudo apt update
 sudo apt-get install gnupg
 
