@@ -49,6 +49,52 @@ variable "web_compute" {
   }
 }
 
+variable "dishout_backend" {
+  type = object({
+    name           = string
+    tag            = list(string)
+    machine_type   = string
+    image          = string
+    script_path    = string
+    static_ip_name = string
+
+    firewall = object({
+      name = string
+      rules = map(object({
+        ports         = list(string)
+        source_ranges = list(string)
+      }))
+    })
+
+    install_duckdns = bool
+  })
+
+  default = {
+    name           = "dishout-backend"
+    tag            = ["dishout-backend"]
+    machine_type   = "e2-micro"
+    image          = "ubuntu-1804-bionic-v20200807"
+    script_path    = "files/dishout-backend.sh"
+    static_ip_name = "dishout-backend-static-ip"
+
+    firewall = {
+      name = "dishout-backend-firewall"
+      rules = {
+        "tcp" = {
+          ports         = ["5000", "443", "22"]
+          source_ranges = ["0.0.0.0/0"]
+        }
+        "icmp" = {
+          ports         = null
+          source_ranges = ["0.0.0.0/0"]
+        }
+      }
+    }
+    install_duckdns = false
+  }
+}
+
+
 variable "mognodb_compute" {
   type = object({
     name           = string

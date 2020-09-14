@@ -23,6 +23,25 @@ module "compute" {
   duckdns_token    = var.duckdns_token
 }
 
+module "dishout-backend" {
+  source           = "./modules/compute"
+  network_name     = module.network.name
+  name             = var.dishout_backend.name
+  compute_tag      = var.dishout_backend.tag
+  machine_type     = var.dishout_backend.machine_type
+  image            = var.dishout_backend.image
+  script_path      = var.dishout_backend.script_path
+  firewall_name    = var.dishout_backend.firewall.name
+  firewall_rules   = var.dishout_backend.firewall.rules
+  static_ip_name   = var.dishout_backend.static_ip_name
+  ssh_user         = var.ssh.user
+  ssh_pub_key      = var.ssh.public_key
+  ssh_private_key  = var.ssh.private_key
+  ansible_playbook = var.ansible_playbook
+  install_duckdns  = var.dishout_backend.install_duckdns
+  duckdns_token    = var.duckdns_token
+}
+
 module "mongodb-compute" {
   source           = "./modules/compute"
   network_name     = module.network.name
