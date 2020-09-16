@@ -1,13 +1,13 @@
 # Network vars
 variable "network_name" {
   type    = string
-  default = "terraform-network"
+  default = "dishout-terraform-network"
 }
 
-variable "web_compute" {
+variable "dishout_frontend" {
   type = object({
     name           = string
-    tag            = list(string)
+    tags           = list(string)
     machine_type   = string
     image          = string
     script_path    = string
@@ -26,7 +26,7 @@ variable "web_compute" {
 
   default = {
     name           = "web"
-    tag            = ["web"]
+    tags           = ["web"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/startup.sh"
@@ -52,7 +52,7 @@ variable "web_compute" {
 variable "dishout_backend" {
   type = object({
     name           = string
-    tag            = list(string)
+    tags           = list(string)
     machine_type   = string
     image          = string
     script_path    = string
@@ -71,7 +71,7 @@ variable "dishout_backend" {
 
   default = {
     name           = "dishout-backend"
-    tag            = ["dishout-backend"]
+    tags           = ["dishout-backend"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/dishout-backend.sh"
@@ -98,7 +98,7 @@ variable "dishout_backend" {
 variable "mognodb_compute" {
   type = object({
     name           = string
-    tag            = list(string)
+    tags           = list(string)
     machine_type   = string
     image          = string
     script_path    = string
@@ -118,7 +118,7 @@ variable "mognodb_compute" {
 
   default = {
     name           = "mongodb"
-    tag            = ["mongodb"]
+    tags            = ["mongodb"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/mongo.sh"

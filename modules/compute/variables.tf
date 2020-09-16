@@ -5,7 +5,7 @@ variable "image" {}
 variable "network_name"{}
 variable "script_path"{}
 
-variable "compute_tag"{}
+variable "compute_tags"{}
 variable "ssh_user"{}
 variable "ssh_pub_key"{}
 variable "ssh_private_key"{}

@@ -4,7 +4,7 @@ resource "google_compute_instance" "vm_instance" {
   metadata_startup_script = file(var.script_path)
   # zone         = "europe-west2"
 
-  tags = var.compute_tag
+  tags = var.compute_tags
 
   metadata = {
     ssh-keys = format("%s:%s", var.ssh_user, file(var.ssh_pub_key))
@@ -61,7 +61,7 @@ resource "google_compute_firewall" "default" {
     ports    = each.value.ports
   }
 
-  source_tags   = var.compute_tag
+  source_tags   = var.compute_tags
   source_ranges = each.value.source_ranges
 }
 
