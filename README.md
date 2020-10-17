@@ -1,7 +1,11 @@
-# terraform-dishout
+
+# Terraform-dishout
 Terraform infrastructure as code for the Dishout webapp
 
+<!-- Images -->
+![Markdown Logo](files/Diagram.png)
 
+### Installation
 1) Install terraform 0.12
 
 2) Create Dishout Project 
@@ -44,10 +48,10 @@ sudo apt-get install -y ansible
 ansible --version
 ```
 
-#### Installing GCP inventory plugin
+#### Installing GCP inventory plugin (Required for ansible dynamic invenotry)
 ```
-sudo apt install python3-pip
-pip3 install requests
-pip3 install google-auth
+sudo apt install python-pip
+pip install requests
+pip install google-auth
 
 ```

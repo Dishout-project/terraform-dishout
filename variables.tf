@@ -21,7 +21,8 @@ variable "dishout_frontend" {
       }))
     })
 
-    install_duckdns = bool
+    install_duckdns    = bool
+    duckdns_subdomain = string
   })
 
   default = {
@@ -46,6 +47,7 @@ variable "dishout_frontend" {
       }
     }
     install_duckdns = true
+    duckdns_subdomain = "dishout-frontend"
   }
 }
 
@@ -66,7 +68,8 @@ variable "dishout_backend" {
       }))
     })
 
-    install_duckdns = bool
+    install_duckdns    = bool
+    duckdns_subdomain = string    
   })
 
   default = {
@@ -90,7 +93,8 @@ variable "dishout_backend" {
         }
       }
     }
-    install_duckdns = false
+    install_duckdns = true
+    duckdns_subdomain ="dishout-backend"
   }
 }
 
@@ -112,8 +116,8 @@ variable "mognodb_compute" {
       }))
     })
 
-    install_duckdns = bool
-
+    install_duckdns    = bool
+    duckdns_subdomain = string
   })
 
   default = {
@@ -137,7 +141,8 @@ variable "mognodb_compute" {
         }
       }
     }
-    install_duckdns = false
+    install_duckdns = true
+    duckdns_subdomain ="dishout-db"
   }
 }
 

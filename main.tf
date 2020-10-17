@@ -20,6 +20,7 @@ module "dishout_frontend" {
   ssh_private_key  = var.ssh.private_key
   ansible_playbook = var.ansible_playbook
   install_duckdns  = var.dishout_frontend.install_duckdns
+  duckdns_subdomain = var.dishout_frontend.duckdns_subdomain
   duckdns_token    = var.duckdns_token
 }
 
@@ -39,6 +40,7 @@ module "dishout_backend" {
   ssh_private_key  = var.ssh.private_key
   ansible_playbook = var.ansible_playbook
   install_duckdns  = var.dishout_backend.install_duckdns
+  duckdns_subdomain = var.dishout_backend.duckdns_subdomain
   duckdns_token    = var.duckdns_token
 }
 
@@ -58,5 +60,6 @@ module "mongodb_compute" {
   ssh_private_key  = var.ssh.private_key
   ansible_playbook = var.ansible_playbook
   install_duckdns  = var.mognodb_compute.install_duckdns
-  duckdns_token    = null
+  duckdns_subdomain = var.mognodb_compute.duckdns_subdomain
+  duckdns_token    = var.duckdns_token
 }

@@ -9,6 +9,8 @@ keyed_groups:
   - key: tags["items"]
 groups:
   web_servers: "'ansible' in tags['items']" # tags.items
+  mongo:       "'mongodb' in tags['items']" # tags.items
+
 filters: []
 auth_kind: serviceaccount       # gcp authentication kind. with service account you should provide the service account json key file to authenticate
 service_account_file: ../credential/dishout-285810-a65687753e29.json   # Service account json keyfile

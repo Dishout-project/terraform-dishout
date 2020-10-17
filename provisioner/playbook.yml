@@ -1,14 +1,13 @@
 ---
+- name: DuckDns setup
+  hosts: all
 
-- hosts: "{{ variable_host | default('web_servers') }}" 
-  vars:
-    duckdns_token: "83cf9d58-ef4e-11ea-adc1-0242ac120002" 
   tasks:
 
   - name: Creating DuckDns script
     lineinfile:
       path: ~/duckdns/duck.sh
-      line: echo url="https://www.duckdns.org/update?domains=dishout-frontend&token={{duckdns_token}}&ip=" | curl -k -o ~/duckdns/duck.log -K -   
+      line: echo url="https://www.duckdns.org/update?domains={{ansible_env.DUCKDNS_SUBDOMAIN}}&token={{ansible_env.DUCKDNS_TOKEN}}&ip=" | curl -k -o ~/duckdns/duck.log -K -   
       mode: '700'
       create: yes
 
@@ -20,3 +19,32 @@
 
   - name: Run DuckDns script
     command: sh  ~/duckdns/duck.sh
+
+######################
+#
+######################
+
+- name: Mongo Config
+  hosts: mongo
+  tasks:
+
+  - name: sleep 180 seconds (to allow mongodb to be installed, not  a perm solution)
+    command: sleep 50
+
+  - name: Enable external access to mongodb
+    become: yes
+    lineinfile:
+      path: /etc/mongod.conf
+      backrefs: yes
+      line: "  bindIp: 127.0.0.1,{{ ansible_all_ipv4_addresses | ipaddr('private') | first }}"
+      regexp: "^.*bindIp: 127.0.0.1"
+
+  - name: Make MongoDb is restarted
+    become: yes
+    systemd:
+      state: restarted
+      name: mongod
+
+# pip install netaddr
+# ansible-inventory -i inventory.compute.gcp.yml --graph
+# ansible mongodb -m ping -i inventory.compute.gcp.yml

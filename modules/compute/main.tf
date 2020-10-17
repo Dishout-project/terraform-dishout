@@ -25,11 +25,15 @@ resource "google_compute_instance" "vm_instance" {
   }
 }
 resource "null_resource" "provioners" {
-  # Conditional, allows me to conditionally run the ansible provisioner on the compute instance that meet the requirements.
-  count = var.install_duckdns  ? 1 : 0
+
+  depends_on = [
+    google_compute_instance.vm_instance
+  ]
 
   provisioner "remote-exec" {
-    inline = ["echo ${var.name} compute instance is ready!!"]
+    inline = ["echo DUCKDNS_SUBDOMAIN=${var.duckdns_subdomain} | sudo tee -a /etc/environment >/dev/null ",
+              "echo DUCKDNS_TOKEN=${var.duckdns_token} | sudo tee -a /etc/environment >/dev/null "
+            ]
 
     connection {
       type        = "ssh"
@@ -37,11 +41,6 @@ resource "null_resource" "provioners" {
       private_key = file(var.ssh_private_key)
       host        = google_compute_address.static_ip.address
     }
-  }
-
-  provisioner "local-exec" {
-    command     = "ansible-playbook ${var.ansible_playbook} --private-key ../${var.ssh_private_key} --extra-vars 'variable_host=${google_compute_address.static_ip.address} duckdns_token=${var.duckdns_token}'"
-    working_dir = "provisioner"
   }
 }
 
