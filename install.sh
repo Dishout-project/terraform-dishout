@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e 
+
 echo "Installing Terraform"
 sudo apt-get install curl -y
 export VER="0.13.2"
