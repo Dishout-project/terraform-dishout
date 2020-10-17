@@ -9,7 +9,7 @@ cd
 curl https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip --output terraform_${VER}_linux_amd64.zip
 sudo apt-get install -y unzip
 unzip terraform_${VER}_linux_amd64.zip
-sudo mkdir /bin/terraform
+test ! -f /bin/terraform && sudo mkdir /bin/terraform
 sudo mv terraform /usr/local/bin/
 rm -fR terraform_${VER}_linux_amd64.zip
 terraform -version
