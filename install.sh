@@ -1,6 +1,7 @@
 #! /bin/bash
 
 echo "Installing Terraform"
+sudo apt-get install curl -y
 export VER="0.13.2"
 cd
 curl https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip --output terraform_${VER}_linux_amd64.zip
