@@ -6,7 +6,7 @@ Terraform infrastructure as code for the Dishout webapp
 ![Markdown Logo](files/Diagram.png)
 
 ### Installation
-1) Install terraform 0.12
+1) Install terraform 0.13.2
 
 2) Create Dishout Project 
 
@@ -18,22 +18,15 @@ Terraform infrastructure as code for the Dishout webapp
 	- Cloud Resource manager
 
 
-
-terraform init
-terraform valdiate
-terraform plan
-terraform apply
-terraform destroy
-
 #### Installing Terraform 
 ```
-export VER="0.13.0"`
+export VER="0.13.2"
+sudo apt install -y curl
+sudo apt-get install -y unzip
 curl https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip --output terraform_${VER}_linux_amd64.zip
-apt-get install -y unzip
 unzip terraform_${VER}_linux_amd64.zip
-mkdir /bin/terraform
 mv terraform /usr/local/bin/
-rm -fR terraform_${VER}_linux_amd64.zip
+rm -rf terraform_${VER}_linux_amd64.zip
 terraform -version
 ```
 
@@ -50,8 +43,7 @@ ansible --version
 
 #### Installing GCP inventory plugin (Required for ansible dynamic invenotry)
 ```
-sudo apt install python-pip
+sudo apt install -y python-pip
 pip install requests
 pip install google-auth
-
 ```

@@ -28,8 +28,8 @@
   hosts: mongo
   tasks:
 
-  - name: sleep 180 seconds (to allow mongodb to be installed, not  a perm solution)
-    command: sleep 50
+  - name: sleep 130 seconds (to allow mongodb to be installed, not  a perm solution)
+    command: sleep 130
 
   - name: Enable external access to mongodb
     become: yes
