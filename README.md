@@ -38,6 +38,8 @@ sudo apt-get install -y software-properties-common
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update -y
 sudo apt-get install -y ansible
+sudo apt install --no-install-recommends python-netaddr
+ansible-galaxy collection install community.general
 ansible --version
 ```
 
@@ -47,3 +49,12 @@ sudo apt install -y python-pip
 pip install requests
 pip install google-auth
 ```
+
+
+
+#### extras
+cd terraform-dishout
+touch terraform.tfvars
+
+ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
+sudo chmod 600 credential/dishout-ssh-keys

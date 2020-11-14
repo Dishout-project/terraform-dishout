@@ -6,10 +6,14 @@ regions:                        # regions from your project you want to fetch in
   - <region-zone>
 keyed_groups:
   - key: zone
+    prefix: zone
   - key: tags["items"]
+    prefix: tags
+  - key: labels
+    prefix: label
+
 groups:
-  web_servers: "'ansible' in tags['items']" # tags.items
-  mongo:       "'mongodb' in tags['items']" # tags.items
+  ansible: "'ansible' in name"
 
 filters: []
 auth_kind: serviceaccount       # gcp authentication kind. with service account you should provide the service account json key file to authenticate

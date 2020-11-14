@@ -31,8 +31,12 @@ resource "null_resource" "provioners" {
   ]
 
   provisioner "remote-exec" {
-    inline = ["echo DUCKDNS_SUBDOMAIN=${var.duckdns_subdomain} | sudo tee -a /etc/environment >/dev/null ",
-              "echo DUCKDNS_TOKEN=${var.duckdns_token} | sudo tee -a /etc/environment >/dev/null "
+    inline = [
+              "echo DUCKDNS_SUBDOMAIN=${var.duckdns_subdomain} | sudo tee -a /etc/environment >/dev/null ",
+              "echo DUCKDNS_TOKEN=${var.duckdns_token} | sudo tee -a /etc/environment >/dev/null ",
+              "echo DOCKER_IMAGE=${var.envs.DOCKER_IMAGE} | sudo tee -a /etc/environment >/dev/null",
+              "echo DOCKER_PORT=${var.envs.DOCKER_PORT} | sudo tee -a /etc/environment >/dev/null",
+              "echo CONTAINER_NAME=${var.envs.CONTAINER_NAME} | sudo tee -a /etc/environment >/dev/null"
             ]
 
     connection {

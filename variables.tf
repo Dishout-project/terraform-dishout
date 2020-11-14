@@ -21,16 +21,22 @@ variable "dishout_frontend" {
       }))
     })
 
-    install_duckdns    = bool
+    envs = object({
+      DOCKER_IMAGE   = string
+      DOCKER_PORT    = string
+      CONTAINER_NAME = string
+    })
+
+    install_duckdns   = bool
     duckdns_subdomain = string
   })
 
   default = {
-    name           = "web"
-    tags           = ["web"]
+    name           = "dishout-frontend"
+    tags           = ["dishout-frontend"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
-    script_path    = "files/startup.sh"
+    script_path    = "files/dishout-frontend.sh"
     static_ip_name = "web-terraform-static-ip"
 
     firewall = {
@@ -46,7 +52,14 @@ variable "dishout_frontend" {
         }
       }
     }
-    install_duckdns = true
+
+    envs = {
+      DOCKER_IMAGE   = "fortunexfortune/dishout-frontend"
+      DOCKER_PORT    = "80:80"
+      CONTAINER_NAME = "dishout-frontend"
+    }
+
+    install_duckdns   = true
     duckdns_subdomain = "dishout-frontend"
   }
 }
@@ -68,8 +81,14 @@ variable "dishout_backend" {
       }))
     })
 
-    install_duckdns    = bool
-    duckdns_subdomain = string    
+    envs = object({
+      DOCKER_IMAGE   = string
+      DOCKER_PORT    = string
+      CONTAINER_NAME = string
+    })
+
+    install_duckdns   = bool
+    duckdns_subdomain = string
   })
 
   default = {
@@ -93,8 +112,15 @@ variable "dishout_backend" {
         }
       }
     }
-    install_duckdns = true
-    duckdns_subdomain ="dishout-backend"
+
+    envs = {
+      DOCKER_IMAGE   = "fortunexfortune/dishout-backend"
+      DOCKER_PORT    = "5000:5000"
+      CONTAINER_NAME = "dishout-backend"
+    }
+
+    install_duckdns   = true
+    duckdns_subdomain = "dishout-backend"
   }
 }
 
@@ -116,13 +142,19 @@ variable "mognodb_compute" {
       }))
     })
 
-    install_duckdns    = bool
+    envs = object({
+      DOCKER_IMAGE = string
+      DOCKER_PORT = string
+      CONTAINER_NAME = string
+    })
+
+    install_duckdns   = bool
     duckdns_subdomain = string
   })
 
   default = {
     name           = "mongodb"
-    tags            = ["mongodb"]
+    tags           = ["mongodb"]
     machine_type   = "e2-micro"
     image          = "ubuntu-1804-bionic-v20200807"
     script_path    = "files/mongo.sh"
@@ -141,8 +173,15 @@ variable "mognodb_compute" {
         }
       }
     }
-    install_duckdns = true
-    duckdns_subdomain ="dishout-db"
+
+    envs = {
+      DOCKER_IMAGE   = "mongo"
+      DOCKER_PORT    = "27017:27017"
+      CONTAINER_NAME = "mongo"
+    }
+
+    install_duckdns   = true
+    duckdns_subdomain = "dishout-db"
   }
 }
 

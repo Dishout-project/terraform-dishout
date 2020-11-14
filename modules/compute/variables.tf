@@ -26,3 +26,6 @@ variable "static_ip_name"{}
 variable "firewall_name"{}
 
 variable "firewall_rules"{}
+
+# envs
+variable "envs"{}
