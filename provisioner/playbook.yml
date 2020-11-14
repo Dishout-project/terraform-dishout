@@ -1,6 +1,6 @@
 ---
 - name: DuckDns setup
-  hosts: "{{ variable_host | default('ansible') }}"
+  hosts: "{{ variable_host | default('duck_dns') }}"
 
   tasks:
   - name: Creating DuckDns script
@@ -25,7 +25,7 @@
 # ================
 
 - name: Docker setup
-  hosts: "ansible"
+  hosts: all
   become: yes
   tasks:
     - name: Apt Install base packages and update

@@ -58,3 +58,7 @@ touch terraform.tfvars
 
 ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
 sudo chmod 600 credential/dishout-ssh-keys
+
+
+
+watch -n 1 ansible-inventory -i inventory.compute.gcp.yml --graph

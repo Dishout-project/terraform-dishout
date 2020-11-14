@@ -1,0 +1,383 @@
+{
+    "_meta": {
+        "hostvars": {
+            "35.188.217.144": {
+                "canIpForward": false, 
+                "cpuPlatform": "Intel Haswell", 
+                "creationTimestamp": "2020-11-14T13:51:02.198-08:00", 
+                "deletionProtection": false, 
+                "disks": [
+                    {
+                        "autoDelete": true, 
+                        "boot": true, 
+                        "deviceName": "persistent-disk-0", 
+                        "diskSizeGb": "10", 
+                        "guestOsFeatures": [
+                            {
+                                "type": "SEV_CAPABLE"
+                            }, 
+                            {
+                                "type": "VIRTIO_SCSI_MULTIQUEUE"
+                            }, 
+                            {
+                                "type": "UEFI_COMPATIBLE"
+                            }
+                        ], 
+                        "index": 0, 
+                        "interface": "SCSI", 
+                        "kind": "compute#attachedDisk", 
+                        "licenses": [
+                            "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/licenses/ubuntu-1804-lts"
+                        ], 
+                        "mode": "READ_WRITE", 
+                        "source": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/disks/dishout-backend-ansible", 
+                        "type": "PERSISTENT"
+                    }
+                ], 
+                "fingerprint": "Irtep-zfvvQ=", 
+                "id": "8790241011174338474", 
+                "image": null, 
+                "kind": "compute#instance", 
+                "labelFingerprint": "ZjkBYWc9hyo=", 
+                "labels": {
+                    "dns_strategy": "duckdns", 
+                    "env": "prod", 
+                    "tier": "backend"
+                }, 
+                "lastStartTimestamp": "2020-11-14T13:51:09.874-08:00", 
+                "machineType": "e2-micro", 
+                "machineType_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/machineTypes/e2-micro", 
+                "metadata": {
+                    "ssh-keys": "dishout:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSTu4+EI7rTHkzCVG+0dXbNNFpUiM8q9juuQSqrxVCCB/iaClOQ0xzktDls3ziCU0hsYRuGJsGWeBwB4hK6vamqprCxLYLll8eMSZuhMWE1i5sKgkVSZkbXo2YQGNBv3q8GPlStc81zmUro/Xxp9SDHOax3VFAGHFexY4BSYyUpl19eCEJTnM6wVi7V1QjqicjimWrLks0abf45TFUuKWbmJrL0tojOZ3dFLmH4FR/ZljfzwdC7Vgk81oryk/UPsINBRFDJ1g+pm7E38Xtbuxxb/iLOpwt7cxsDbdHianz51tygeG0q4NN6xuxsKsWLTAFSSB/fHJ9eRYSJB2NCAYO76HLr2jPHUGkpbs2liX6Gy8QpLyCMWg/LiODq3Pnru8UVveS0AW+f0BnUbvRbaAA3AfbDtGjnA+1PaOZmMt3RmRPeV+qh/ppO6Yd+gWLn55C4BwExs69tb+hNioz2xV/lgcXYVNXK9uSr6Cb2Q5/cbHXbyah9rnSP7pVt8ZvvMgO4Rg2DBpFFhwbl7BlvIUhamBqYVBBbixD6FPfQvVcs0gOTH/o4pTi2MGnMxb6i33anne5QUmRXPOulnBfH40c5Uj/KGUG/wSby9V+Tnjjhhy9s6XmcImXkmS+2UU2DSdapnS5Cl6Paow0Xc89+2HYw8nuXVoxh0Slj3B3PYgmBQ== vagrant@vagrant\n", 
+                    "startup-script": "#!/bin/bash\n\n# Create dishout user\nuseradd -m -d /home/dishout dishout && usermod --shell /bin/bash dishout\n"
+                }, 
+                "name": "dishout-backend-ansible", 
+                "networkInterfaces": [
+                    {
+                        "accessConfigs": [
+                            {
+                                "kind": "compute#accessConfig", 
+                                "name": "external-nat", 
+                                "natIP": "35.188.217.144", 
+                                "networkTier": "PREMIUM", 
+                                "type": "ONE_TO_ONE_NAT"
+                            }
+                        ], 
+                        "fingerprint": "ybFjPvUU--U=", 
+                        "kind": "compute#networkInterface", 
+                        "name": "nic0", 
+                        "network": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "global", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/global/networks/dishout-terraform-network-ansible"
+                        }, 
+                        "networkIP": "10.128.0.2", 
+                        "subnetwork": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "us-central1", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/regions/us-central1/subnetworks/dishout-terraform-network-ansible"
+                        }
+                    }
+                ], 
+                "project": "dishout-285810", 
+                "scheduling": {
+                    "automaticRestart": true, 
+                    "onHostMaintenance": "MIGRATE", 
+                    "preemptible": false
+                }, 
+                "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/instances/dishout-backend-ansible", 
+                "shieldedInstanceConfig": {
+                    "enableIntegrityMonitoring": true, 
+                    "enableSecureBoot": false, 
+                    "enableVtpm": true
+                }, 
+                "shieldedInstanceIntegrityPolicy": {
+                    "updateAutoLearnPolicy": true
+                }, 
+                "startRestricted": false, 
+                "status": "RUNNING", 
+                "tags": {
+                    "fingerprint": "rmV4bZrwTxU=", 
+                    "items": [
+                        "dishout-backend"
+                    ]
+                }, 
+                "zone": "us-central1-c", 
+                "zone_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c"
+            }, 
+            "35.232.66.163": {
+                "canIpForward": false, 
+                "cpuPlatform": "Intel Haswell", 
+                "creationTimestamp": "2020-11-14T13:51:02.605-08:00", 
+                "deletionProtection": false, 
+                "disks": [
+                    {
+                        "autoDelete": true, 
+                        "boot": true, 
+                        "deviceName": "persistent-disk-0", 
+                        "diskSizeGb": "10", 
+                        "guestOsFeatures": [
+                            {
+                                "type": "SEV_CAPABLE"
+                            }, 
+                            {
+                                "type": "VIRTIO_SCSI_MULTIQUEUE"
+                            }, 
+                            {
+                                "type": "UEFI_COMPATIBLE"
+                            }
+                        ], 
+                        "index": 0, 
+                        "interface": "SCSI", 
+                        "kind": "compute#attachedDisk", 
+                        "licenses": [
+                            "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/licenses/ubuntu-1804-lts"
+                        ], 
+                        "mode": "READ_WRITE", 
+                        "source": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/disks/mongodb-ansible", 
+                        "type": "PERSISTENT"
+                    }
+                ], 
+                "fingerprint": "9clZOsnGEGo=", 
+                "id": "3089882453676781482", 
+                "image": null, 
+                "kind": "compute#instance", 
+                "labelFingerprint": "9vcqcC9v3gI=", 
+                "labels": {
+                    "dns_strategy": "duckdns", 
+                    "env": "prod", 
+                    "tier": "database"
+                }, 
+                "lastStartTimestamp": "2020-11-14T13:51:11.251-08:00", 
+                "machineType": "e2-micro", 
+                "machineType_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/machineTypes/e2-micro", 
+                "metadata": {
+                    "ssh-keys": "dishout:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSTu4+EI7rTHkzCVG+0dXbNNFpUiM8q9juuQSqrxVCCB/iaClOQ0xzktDls3ziCU0hsYRuGJsGWeBwB4hK6vamqprCxLYLll8eMSZuhMWE1i5sKgkVSZkbXo2YQGNBv3q8GPlStc81zmUro/Xxp9SDHOax3VFAGHFexY4BSYyUpl19eCEJTnM6wVi7V1QjqicjimWrLks0abf45TFUuKWbmJrL0tojOZ3dFLmH4FR/ZljfzwdC7Vgk81oryk/UPsINBRFDJ1g+pm7E38Xtbuxxb/iLOpwt7cxsDbdHianz51tygeG0q4NN6xuxsKsWLTAFSSB/fHJ9eRYSJB2NCAYO76HLr2jPHUGkpbs2liX6Gy8QpLyCMWg/LiODq3Pnru8UVveS0AW+f0BnUbvRbaAA3AfbDtGjnA+1PaOZmMt3RmRPeV+qh/ppO6Yd+gWLn55C4BwExs69tb+hNioz2xV/lgcXYVNXK9uSr6Cb2Q5/cbHXbyah9rnSP7pVt8ZvvMgO4Rg2DBpFFhwbl7BlvIUhamBqYVBBbixD6FPfQvVcs0gOTH/o4pTi2MGnMxb6i33anne5QUmRXPOulnBfH40c5Uj/KGUG/wSby9V+Tnjjhhy9s6XmcImXkmS+2UU2DSdapnS5Cl6Paow0Xc89+2HYw8nuXVoxh0Slj3B3PYgmBQ== vagrant@vagrant\n", 
+                    "startup-script": "#!/bin/bash\n\n# Create dishout user\nuseradd -m -d /home/dishout dishout && usermod --shell /bin/bash dishout"
+                }, 
+                "name": "mongodb-ansible", 
+                "networkInterfaces": [
+                    {
+                        "accessConfigs": [
+                            {
+                                "kind": "compute#accessConfig", 
+                                "name": "external-nat", 
+                                "natIP": "35.232.66.163", 
+                                "networkTier": "PREMIUM", 
+                                "type": "ONE_TO_ONE_NAT"
+                            }
+                        ], 
+                        "fingerprint": "e5gZlnmZHTg=", 
+                        "kind": "compute#networkInterface", 
+                        "name": "nic0", 
+                        "network": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "global", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/global/networks/dishout-terraform-network-ansible"
+                        }, 
+                        "networkIP": "10.128.0.3", 
+                        "subnetwork": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "us-central1", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/regions/us-central1/subnetworks/dishout-terraform-network-ansible"
+                        }
+                    }
+                ], 
+                "project": "dishout-285810", 
+                "scheduling": {
+                    "automaticRestart": true, 
+                    "onHostMaintenance": "MIGRATE", 
+                    "preemptible": false
+                }, 
+                "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/instances/mongodb-ansible", 
+                "shieldedInstanceConfig": {
+                    "enableIntegrityMonitoring": true, 
+                    "enableSecureBoot": false, 
+                    "enableVtpm": true
+                }, 
+                "shieldedInstanceIntegrityPolicy": {
+                    "updateAutoLearnPolicy": true
+                }, 
+                "startRestricted": false, 
+                "status": "RUNNING", 
+                "tags": {
+                    "fingerprint": "unDUUT8-8-A=", 
+                    "items": [
+                        "mongodb"
+                    ]
+                }, 
+                "zone": "us-central1-c", 
+                "zone_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c"
+            }, 
+            "35.238.8.86": {
+                "canIpForward": false, 
+                "cpuPlatform": "Intel Haswell", 
+                "creationTimestamp": "2020-11-14T13:51:03.874-08:00", 
+                "deletionProtection": false, 
+                "disks": [
+                    {
+                        "autoDelete": true, 
+                        "boot": true, 
+                        "deviceName": "persistent-disk-0", 
+                        "diskSizeGb": "10", 
+                        "guestOsFeatures": [
+                            {
+                                "type": "SEV_CAPABLE"
+                            }, 
+                            {
+                                "type": "VIRTIO_SCSI_MULTIQUEUE"
+                            }, 
+                            {
+                                "type": "UEFI_COMPATIBLE"
+                            }
+                        ], 
+                        "index": 0, 
+                        "interface": "SCSI", 
+                        "kind": "compute#attachedDisk", 
+                        "licenses": [
+                            "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/licenses/ubuntu-1804-lts"
+                        ], 
+                        "mode": "READ_WRITE", 
+                        "source": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/disks/dishout-frontend-ansible", 
+                        "type": "PERSISTENT"
+                    }
+                ], 
+                "fingerprint": "e5XkMnzxF7c=", 
+                "id": "8240679488721907626", 
+                "image": null, 
+                "kind": "compute#instance", 
+                "labelFingerprint": "iDDElWUQS6A=", 
+                "labels": {
+                    "dns_strategy": "duckdns", 
+                    "env": "prod", 
+                    "tier": "frontend"
+                }, 
+                "lastStartTimestamp": "2020-11-14T13:51:09.768-08:00", 
+                "machineType": "e2-micro", 
+                "machineType_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/machineTypes/e2-micro", 
+                "metadata": {
+                    "ssh-keys": "dishout:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDSTu4+EI7rTHkzCVG+0dXbNNFpUiM8q9juuQSqrxVCCB/iaClOQ0xzktDls3ziCU0hsYRuGJsGWeBwB4hK6vamqprCxLYLll8eMSZuhMWE1i5sKgkVSZkbXo2YQGNBv3q8GPlStc81zmUro/Xxp9SDHOax3VFAGHFexY4BSYyUpl19eCEJTnM6wVi7V1QjqicjimWrLks0abf45TFUuKWbmJrL0tojOZ3dFLmH4FR/ZljfzwdC7Vgk81oryk/UPsINBRFDJ1g+pm7E38Xtbuxxb/iLOpwt7cxsDbdHianz51tygeG0q4NN6xuxsKsWLTAFSSB/fHJ9eRYSJB2NCAYO76HLr2jPHUGkpbs2liX6Gy8QpLyCMWg/LiODq3Pnru8UVveS0AW+f0BnUbvRbaAA3AfbDtGjnA+1PaOZmMt3RmRPeV+qh/ppO6Yd+gWLn55C4BwExs69tb+hNioz2xV/lgcXYVNXK9uSr6Cb2Q5/cbHXbyah9rnSP7pVt8ZvvMgO4Rg2DBpFFhwbl7BlvIUhamBqYVBBbixD6FPfQvVcs0gOTH/o4pTi2MGnMxb6i33anne5QUmRXPOulnBfH40c5Uj/KGUG/wSby9V+Tnjjhhy9s6XmcImXkmS+2UU2DSdapnS5Cl6Paow0Xc89+2HYw8nuXVoxh0Slj3B3PYgmBQ== vagrant@vagrant\n", 
+                    "startup-script": "#!/bin/bash\n\n# Create dishout user\nuseradd -m -d /home/dishout dishout && usermod --shell /bin/bash dishout"
+                }, 
+                "name": "dishout-frontend-ansible", 
+                "networkInterfaces": [
+                    {
+                        "accessConfigs": [
+                            {
+                                "kind": "compute#accessConfig", 
+                                "name": "external-nat", 
+                                "natIP": "35.238.8.86", 
+                                "networkTier": "PREMIUM", 
+                                "type": "ONE_TO_ONE_NAT"
+                            }
+                        ], 
+                        "fingerprint": "YxUt3Hy8jpI=", 
+                        "kind": "compute#networkInterface", 
+                        "name": "nic0", 
+                        "network": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "global", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/global/networks/dishout-terraform-network-ansible"
+                        }, 
+                        "networkIP": "10.128.0.4", 
+                        "subnetwork": {
+                            "name": "dishout-terraform-network-ansible", 
+                            "region": "us-central1", 
+                            "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/regions/us-central1/subnetworks/dishout-terraform-network-ansible"
+                        }
+                    }
+                ], 
+                "project": "dishout-285810", 
+                "scheduling": {
+                    "automaticRestart": true, 
+                    "onHostMaintenance": "MIGRATE", 
+                    "preemptible": false
+                }, 
+                "selfLink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c/instances/dishout-frontend-ansible", 
+                "shieldedInstanceConfig": {
+                    "enableIntegrityMonitoring": true, 
+                    "enableSecureBoot": false, 
+                    "enableVtpm": true
+                }, 
+                "shieldedInstanceIntegrityPolicy": {
+                    "updateAutoLearnPolicy": true
+                }, 
+                "startRestricted": false, 
+                "status": "RUNNING", 
+                "tags": {
+                    "fingerprint": "7lRb2gAEo8A=", 
+                    "items": [
+                        "dishout-frontend"
+                    ]
+                }, 
+                "zone": "us-central1-c", 
+                "zone_selflink": "https://www.googleapis.com/compute/v1/projects/dishout-285810/zones/us-central1-c"
+            }
+        }
+    }, 
+    "all": {
+        "children": [
+            "label_dns_strategy_duckdns", 
+            "label_env_prod", 
+            "label_tier_backend", 
+            "label_tier_database", 
+            "label_tier_frontend", 
+            "tags_dishout_backend", 
+            "tags_dishout_frontend", 
+            "tags_mongodb", 
+            "ungrouped", 
+            "zone_us_central1_c"
+        ]
+    }, 
+    "label_dns_strategy_duckdns": {
+        "hosts": [
+            "35.188.217.144", 
+            "35.232.66.163", 
+            "35.238.8.86"
+        ]
+    }, 
+    "label_env_prod": {
+        "hosts": [
+            "35.188.217.144", 
+            "35.232.66.163", 
+            "35.238.8.86"
+        ]
+    }, 
+    "label_tier_backend": {
+        "hosts": [
+            "35.188.217.144"
+        ]
+    }, 
+    "label_tier_database": {
+        "hosts": [
+            "35.232.66.163"
+        ]
+    }, 
+    "label_tier_frontend": {
+        "hosts": [
+            "35.238.8.86"
+        ]
+    }, 
+    "tags_dishout_backend": {
+        "hosts": [
+            "35.188.217.144"
+        ]
+    }, 
+    "tags_dishout_frontend": {
+        "hosts": [
+            "35.238.8.86"
+        ]
+    }, 
+    "tags_mongodb": {
+        "hosts": [
+            "35.232.66.163"
+        ]
+    }, 
+    "zone_us_central1_c": {
+        "hosts": [
+            "35.188.217.144", 
+            "35.232.66.163", 
+            "35.238.8.86"
+        ]
+    }
+}

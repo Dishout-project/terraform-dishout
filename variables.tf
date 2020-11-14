@@ -21,14 +21,14 @@ variable "dishout_frontend" {
       }))
     })
 
-    envs = object({
-      DOCKER_IMAGE   = string
-      DOCKER_PORT    = string
-      CONTAINER_NAME = string
-    })
+    labels = map(string)
 
-    install_duckdns   = bool
-    duckdns_subdomain = string
+    envs = object({
+      DOCKER_IMAGE      = string
+      DOCKER_PORT       = string
+      CONTAINER_NAME    = string
+      DUCKDNS_SUBDOMAIN = string
+    })
   })
 
   default = {
@@ -53,14 +53,18 @@ variable "dishout_frontend" {
       }
     }
 
-    envs = {
-      DOCKER_IMAGE   = "fortunexfortune/dishout-frontend"
-      DOCKER_PORT    = "80:80"
-      CONTAINER_NAME = "dishout-frontend"
+    labels = {
+      env          = "prod",
+      dns_strategy = "duckdns",
+      tier         = "frontend"
     }
 
-    install_duckdns   = true
-    duckdns_subdomain = "dishout-frontend"
+    envs = {
+      DOCKER_IMAGE      = "fortunexfortune/dishout-frontend"
+      DOCKER_PORT       = "80:80"
+      CONTAINER_NAME    = "dishout-frontend"
+      DUCKDNS_SUBDOMAIN = "dishout-frontend"
+    }
   }
 }
 
@@ -81,14 +85,14 @@ variable "dishout_backend" {
       }))
     })
 
-    envs = object({
-      DOCKER_IMAGE   = string
-      DOCKER_PORT    = string
-      CONTAINER_NAME = string
-    })
+    labels = map(string)
 
-    install_duckdns   = bool
-    duckdns_subdomain = string
+    envs = object({
+      DOCKER_IMAGE      = string
+      DOCKER_PORT       = string
+      CONTAINER_NAME    = string
+      DUCKDNS_SUBDOMAIN = string
+    })
   })
 
   default = {
@@ -113,14 +117,18 @@ variable "dishout_backend" {
       }
     }
 
-    envs = {
-      DOCKER_IMAGE   = "fortunexfortune/dishout-backend"
-      DOCKER_PORT    = "5000:5000"
-      CONTAINER_NAME = "dishout-backend"
+    labels = {
+      env          = "prod",
+      dns_strategy = "duckdns",
+      tier         = "backend"
     }
 
-    install_duckdns   = true
-    duckdns_subdomain = "dishout-backend"
+    envs = {
+      DOCKER_IMAGE      = "fortunexfortune/dishout-backend"
+      DOCKER_PORT       = "5000:5000"
+      CONTAINER_NAME    = "dishout-backend"
+      DUCKDNS_SUBDOMAIN = "dishout-backend"
+    }
   }
 }
 
@@ -142,14 +150,14 @@ variable "mognodb_compute" {
       }))
     })
 
-    envs = object({
-      DOCKER_IMAGE = string
-      DOCKER_PORT = string
-      CONTAINER_NAME = string
-    })
+    labels = map(string)
 
-    install_duckdns   = bool
-    duckdns_subdomain = string
+    envs = object({
+      DOCKER_IMAGE      = string
+      DOCKER_PORT       = string
+      CONTAINER_NAME    = string
+      DUCKDNS_SUBDOMAIN = string
+    })
   })
 
   default = {
@@ -174,14 +182,18 @@ variable "mognodb_compute" {
       }
     }
 
-    envs = {
-      DOCKER_IMAGE   = "mongo"
-      DOCKER_PORT    = "27017:27017"
-      CONTAINER_NAME = "mongo"
+    labels = {
+      env          = "prod",
+      dns_strategy = "private"
+      tier         = "database"
     }
 
-    install_duckdns   = true
-    duckdns_subdomain = "dishout-db"
+    envs = {
+      DOCKER_IMAGE      = "mongo"
+      DOCKER_PORT       = "27017:27017"
+      CONTAINER_NAME    = "mongo"
+      DUCKDNS_SUBDOMAIN = "dishout-db"
+    }
   }
 }
 
@@ -198,12 +210,6 @@ variable "ssh" {
     "private_key" = "credential/dishout-ssh-keys"
   }
 }
-
-variable "ansible_playbook" {
-  type    = string
-  default = "playbook.yml"
-}
-
 
 variable "duckdns_token" {
   type        = string

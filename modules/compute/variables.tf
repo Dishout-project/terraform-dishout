@@ -1,6 +1,5 @@
 # compute vars
 variable "name" {}
-# variable "subnet_name" {}
 variable "machine_type" {}
 variable "image" {}
 variable "network_name"{}
@@ -11,13 +10,10 @@ variable "ssh_user"{}
 variable "ssh_pub_key"{}
 variable "ssh_private_key"{}
 
-# duckdns
-variable "install_duckdns"{}
-variable "duckdns_token"{}
-variable "duckdns_subdomain"{}
+variable "labels" {}
 
-# ansible
-variable "ansible_playbook"{}
+# duckdns
+variable "duckdns_token"{}
 
 # static_ip vars
 variable "static_ip_name"{}

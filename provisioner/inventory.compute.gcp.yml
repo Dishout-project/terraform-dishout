@@ -13,7 +13,9 @@ keyed_groups:
     prefix: label
 
 groups:
-  ansible: "'ansible' in name"
+  example: "labels['dns_strategy']"
+  duck_dns: "labels['dns_strategy'] == 'duckdns'"
+
 
 filters: []
 auth_kind: serviceaccount       # gcp authentication kind. with service account you should provide the service account json key file to authenticate
