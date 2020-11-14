@@ -184,7 +184,7 @@ variable "mognodb_compute" {
 
     labels = {
       env          = "prod",
-      dns_strategy = "private"
+      dns_strategy = "duckdns"
       tier         = "database"
     }
 
