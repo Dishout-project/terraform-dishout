@@ -1,75 +1,85 @@
 
 # Terraform-dishout
-Terraform infrastructure as code for the Dishout webapp
+Terraform-dishout provides the configuration required to create the dishout infrastructure in GCP. 
+
+### Installation
+
+Installing Terraform 0.13.2
+```
+sh setup/install_terraform.sh
+```
+
+Installing Ansible
+```
+sh setup/install_ansible.sh
+```
+Installing GCP inventory plugin (required for ansible dynamic invenotry)
+```
+sh setup/install_gcp_inventory.sh
+```
+
+### usage
+```
+terraform apply
+cd provisioner && ansible-playbook playbook.yml
+```
+
+### how it works
+Upon running *__terraform apply__*  Terraform crates infrastructure within the *___dishout-285810___* GCP project. 
+Resources provisioned :  
+1. VPC
+2. virtual machines 
+3. firewalls 
+4. static IPs
 
 <!-- Images -->
 ![Markdown Logo](files/Diagram.png)
 
-### Installation
-1) Install terraform 0.13.2
+While provisioning the virtual machines terraform sets the following env variables:
+1. DUCKDNS_SUBDOMAIN (*DuckDNS subdomain used to acess the application*)
+2. DUCKDNS_TOKEN (*token used to make a request to the duckdns API*)
+3. DOCKER_IMAGE (*Image that will be used to run the docker container*)
+4. DOCKER_PORT  (*Port docker container will run on*)
+5. CONTAINER_NAME (*Name of docker container*)i
 
-2) Create Dishout Project 
-
-3) Service Account(grant "Project editor Role" and generate JSON key)
- 
-4) Ebable APis
-	- Cloud storage
-	- Cloud compute
-	- Cloud Resource manager
-
-
-#### Installing Terraform 
-```
-export VER="0.13.2"
-sudo apt install -y curl
-sudo apt-get install -y unzip
-curl https://releases.hashicorp.com/terraform/${VER}/terraform_${VER}_linux_amd64.zip --output terraform_${VER}_linux_amd64.zip
-unzip terraform_${VER}_linux_amd64.zip
-mv terraform /usr/local/bin/
-rm -rf terraform_${VER}_linux_amd64.zip
-terraform -version
-```
-
-#### Installing Ansible
-```
-sudo apt-get update -y
-echo "Installing ansible"
-sudo apt-get install -y software-properties-common
-sudo apt-add-repository -y ppa:ansible/ansible
-sudo apt-get update -y
-sudo apt-get install -y ansible
-sudo apt install --no-install-recommends python-netaddr
-ansible-galaxy collection install community.general
-ansible --version
-```
-
-#### Installing GCP inventory plugin (required for ansible dynamic invenotry)
-```
-sudo apt install -y python-pip
-pip install requests
-pip install google-auth
-```
-
-
-
-#### Extras
-
-###### tfvars
-The terraform.tfvars is required in order to for secretes.
+#####tfvars
+The terraform.tfvars is required in order for secretes.
 example .tfvars: 
 ```
 duckdns_token = "*******"
 ```
 
-###### SSH keys
-ssh-keys are required, simply execure these commands to create a pair (this might be removed)
+Upon running *__cd provisioner && ansible-playbook playbook.yml__*  Ansible provisions the virtual machines by doing the following:
+1. setting up DUCKDNS cron script  (*script that notifies duckdns of the public IP of the machine*)
+2. Installing docker (*Ansible module geerlingguy.docker is used for this*)
+3. running the appropiate docker container (*Does this by using the env variables set by terraform during VM creation*)
+
+
+
+<!-- Images -->
+![Markdown Logo](files/AnsibleDiagram.png)
+
+
+#### Extras
+##### How is ansible able to provision against newly created machines? how does it get their IP and other data?
+
+This is thanks to ansible *___dynamic invenotry___*, this allows ansible to query resources within the  *___dishout-285810___* GCP project by using the *___service account credentials___*. 
+We are able to specify the sets of machines ansible will run a play against by grouping the hosts within our project by label, zone, tag, name, etc (refer to provisioner/inventory.compute.gcp.yml). 
+In our case Ansible runs the DuckDNS play on machines with lbael `dns_strategy: duckdns`
+*other resources
+- [How to Use Ansible Gcp compute inventory](http://matthieure.me/2018/12/31/ansible_inventory_plugin.htmll)
+- [How To Setup Ansible Dynamic Inventory For Google Cloud](https://devopscube.com/ansible-dymanic-inventry-google-cloud/l)
+
+
+The following command allows to query GCP about running instances:
+`watch -n 1 ansible-inventory -i inventory.compute.gcp.yml --graph`
+
+
+
+##### SSH keys
+These will allow you to ssh to the instances loaclly and will be used by ansible to authenticate against the virtual machine in order to run commands.
+ssh-keys are required, simply execure these commands to create a pair (this might be removed in the future)
 ```
 ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
 sudo chmod 600 credential/dishout-ssh-keys
-```
-
-###### Ansible
-the following command allows to query GCP about running instances. 
-```
-watch -n 1 ansible-inventory -i inventory.compute.gcp.yml --graph
 ```
