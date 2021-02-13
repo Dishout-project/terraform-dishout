@@ -17,6 +17,12 @@ Installing GCP inventory plugin (required for ansible dynamic invenotry)
 ```
 sh setup/install_gcp_inventory.sh
 ```
+SSH-KEYS
+Ssh keys allow you to ssh to the instances locally and will be used by ansible to authenticate against the virtual machine in order to run it's playbook, simply execute these commands to create a pair (this might be removed in the future)
+```
+ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
+sudo chmod 600 credential/dishout-ssh-keys
+```
 
 ### usage
 ```
@@ -42,7 +48,7 @@ While provisioning the virtual machines terraform sets the following env variabl
 4. DOCKER_PORT  (*Port docker container will run on*)
 5. CONTAINER_NAME (*Name of docker container*)i
 
-#####tfvars
+##### tfvars
 The terraform.tfvars is required in order for secretes.
 example .tfvars: 
 ```
@@ -55,10 +61,8 @@ Upon running *__cd provisioner && ansible-playbook playbook.yml__*  Ansible prov
 3. running the appropiate docker container (*Does this by using the env variables set by terraform during VM creation*)
 
 
-
 <!-- Images -->
 ![Markdown Logo](files/AnsibleDiagram.png)
-
 
 #### Extras
 ##### How is ansible able to provision against newly created machines? how does it get their IP and other data?
@@ -75,11 +79,3 @@ The following command allows to query GCP about running instances:
 `watch -n 1 ansible-inventory -i inventory.compute.gcp.yml --graph`
 
 
-
-##### SSH keys
-These will allow you to ssh to the instances loaclly and will be used by ansible to authenticate against the virtual machine in order to run commands.
-ssh-keys are required, simply execure these commands to create a pair (this might be removed in the future)
-```
-ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
-sudo chmod 600 credential/dishout-ssh-keys
-```
