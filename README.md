@@ -17,7 +17,10 @@ Installing GCP inventory plugin (required for ansible dynamic invenotry)
 ```
 sh setup/install_gcp_inventory.sh
 ```
-SSH-KEYS
+Service account key \
+Place the `dishout-285810-a65687753e29.json` file within the credential folder, this will be used by terraform and ansible to authenticate against the GCP account.
+
+SSH keys \
 Ssh keys allow you to ssh to the instances locally and will be used by ansible to authenticate against the virtual machine in order to run it's playbook, simply execute these commands to create a pair (this might be removed in the future)
 ```
 ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
