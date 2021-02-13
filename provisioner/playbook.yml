@@ -45,7 +45,7 @@
         name: docker
 
     - name: Create Docker container
-      community.general.docker_container:
+      docker_container:
         name: '{{ansible_env.CONTAINER_NAME}}'
         image: '{{ansible_env.DOCKER_IMAGE}}'
         ports:
