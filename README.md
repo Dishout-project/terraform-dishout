@@ -18,7 +18,6 @@ sh setup/install_gcp_inventory.sh
 ```
 ##### Setting up tfvars
 The terraform.tfvars is required in order for secretes.
-example .tfvars: 
 ```
 touch terraform.tfvars
 echo 'duckdns_token = "*******"' >> terraform.tfvars 
