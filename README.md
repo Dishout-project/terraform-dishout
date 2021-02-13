@@ -4,16 +4,23 @@ Terraform-dishout provides the configuration required to create the dishout infr
 
 ### Installation
 
-Installing Terraform 0.13.2
+##### Installing Terraform 0.13.2
 ```
 sh setup/install_terraform.sh
 ```
+##### Setting up tfvars
+The terraform.tfvars is required in order for secretes.
+example .tfvars: 
+```
+touch terraform.tfvars
+echo 'duckdns_token = "*******"' >> terraform.tfvars 
+```
 
-Installing Ansible
+##### Installing Ansible
 ```
 sh setup/install_ansible.sh
 ```
-Installing GCP inventory plugin (required for ansible dynamic invenotry)
+##### Installing GCP inventory plugin (required for ansible dynamic invenotry)
 ```
 sh setup/install_gcp_inventory.sh
 ```
@@ -29,6 +36,7 @@ sudo chmod 600 credential/dishout-ssh-keys
 
 ### usage
 ```
+terraform init
 terraform apply
 cd provisioner && ansible-playbook playbook.yml
 ```
@@ -51,12 +59,6 @@ While provisioning the virtual machines terraform sets the following env variabl
 4. DOCKER_PORT  (*Port docker container will run on*)
 5. CONTAINER_NAME (*Name of docker container*)i
 
-##### tfvars
-The terraform.tfvars is required in order for secretes.
-example .tfvars: 
-```
-duckdns_token = "*******"
-```
 
 Upon running *__cd provisioner && ansible-playbook playbook.yml__*  Ansible provisions the virtual machines by doing the following:
 1. setting up DUCKDNS cron script  (*script that notifies duckdns of the public IP of the machine*)
