@@ -8,14 +8,6 @@ Terraform-dishout provides the configuration required to create the dishout infr
 ```
 sh setup/install_terraform.sh
 ```
-##### Setting up tfvars
-The terraform.tfvars is required in order for secretes.
-example .tfvars: 
-```
-touch terraform.tfvars
-echo 'duckdns_token = "*******"' >> terraform.tfvars 
-```
-
 ##### Installing Ansible
 ```
 sh setup/install_ansible.sh
@@ -24,10 +16,17 @@ sh setup/install_ansible.sh
 ```
 sh setup/install_gcp_inventory.sh
 ```
-Setup service account key \
+##### Setting up tfvars
+The terraform.tfvars is required in order for secretes.
+example .tfvars: 
+```
+touch terraform.tfvars
+echo 'duckdns_token = "*******"' >> terraform.tfvars 
+```
+##### Setup service account key
 Place the `dishout-285810-a65687753e29.json` file within the credential folder, this will be used by terraform and ansible to authenticate against the GCP account.
 
-Setup SSH keys \
+##### Setup SSH keys
 Ssh keys allow you to ssh to the instances locally and will be used by ansible to authenticate against the virtual machine in order to run it's playbook, simply execute these commands to create a pair (this might be removed in the future)
 ```
 ssh-keygen -f credential/dishout-ssh-keys -t rsa -b 4096
